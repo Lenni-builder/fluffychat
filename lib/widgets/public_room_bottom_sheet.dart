@@ -1,16 +1,14 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:flutter_linkify/flutter_linkify.dart';
-import 'package:go_router/go_router.dart';
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/qr_code_viewer.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:flutter_linkify/flutter_linkify.dart';
+import 'package:go_router/go_router.dart';
+import 'package:matrix/matrix.dart';
 
 class PublicRoomBottomSheet extends StatelessWidget {
   final String? roomAlias;
@@ -39,10 +37,10 @@ class PublicRoomBottomSheet extends StatelessWidget {
           return chunk.roomId;
         }
         final roomId = chunk != null && knock
-            ? await client.knockRoom(chunk.roomId, serverName: via)
+            ? await client.knockRoom(chunk.roomId, via: via)
             : await client.joinRoom(
                 roomAlias ?? chunk!.roomId,
-                serverName: via,
+                via: via,
               );
 
         if (!knock && client.getRoomById(roomId) == null) {
